@@ -1,6 +1,0 @@
-venv/
-.wdm/
-__pycache__/
-*.pyc
-.DS_Store
-imagenes_scroll.zip
