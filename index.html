@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Storytelling & Liguilla Analytics</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;500;700&family=Unbounded:wght@300;600;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <!-- Contenedor fijo que mantiene el canvas -->
+    <div class="scroll-container">
+        <canvas id="video-canvas"></canvas>
+    </div>
+
+    <!-- Secciones de contenido por las que haremos scroll -->
+    <div id="content">
+        <!-- INTRODUCCIÓN CON HOOK -->
+        <section class="step">
+            <div class="text-box gala-box">
+                <h1>Gala de la Liguilla: Los Premios del Momento</h1>
+                <p>Bienvenidos a la premiación definitiva. Analizamos los últimos 5 partidos de los finalistas de la Liga MX para descubrir quién llega en su mejor momento. Estos datos son la clave para predecir al próximo campeón. Comencemos premiando al equipo más constante.</p>
+                <div id="podium-1" class="podium-container"></div>
+            </div>
+        </section>
+        
+        <div class="scroll-spacer"></div>
+
+        <!-- GOLES -->
+        <section class="step">
+            <div class="text-box gala-box">
+                <h2>El Botín de Oro Colectivo</h2>
+                <p>En la Liguilla, el gol es el rey absoluto. Este galardón reconoce al equipo con el mayor poder ofensivo y contundencia frente al arco rival en esta recta final. Aquí están los artilleros más letales.</p>
+                <div id="podium-2" class="podium-container"></div>
+            </div>
+        </section>
+        
+        <div class="scroll-spacer"></div>
+
+        <!-- POSESIÓN -->
+        <section class="step">
+            <div class="text-box gala-box">
+                <h2>El Balón de Oro al Dominio</h2>
+                <p>Predecir un partido requiere entender quién dicta el ritmo. Este premio es para los dueños absolutos del esférico, aquellos equipos que asfixian al rival mediante la posesión táctica.</p>
+                <div id="podium-3" class="podium-container"></div>
+            </div>
+        </section>
+
+        <div class="scroll-spacer"></div>
+
+        <!-- TIROS DE ESQUINA -->
+        <section class="step">
+            <div class="text-box gala-box">
+                <h2>Premio al Asedio Aéreo</h2>
+                <p>Los tiros de esquina no son casualidad; son el resultado de vivir en el área contraria. Reconocemos a los equipos que generan mayor sensación de peligro y presión constante por las bandas.</p>
+                <div id="podium-4" class="podium-container"></div>
+            </div>
+        </section>
+        
+        <div class="scroll-spacer"></div>
+
+        <!-- TARJETAS -->
+        <section class="step">
+            <div class="text-box gala-box">
+                <h2>El Trofeo a la Fricción</h2>
+                <p>La intensidad desmedida puede costar campeonatos. Este es el "anti-premio" para los equipos que han cruzado la línea, acumulando el mayor puntaje de castigo entre tarjetas amarillas y rojas.</p>
+                <div id="podium-5" class="podium-container"></div>
+            </div>
+        </section>
+        
+        <div class="scroll-spacer"></div>
+
+        <!-- PENALES -->
+        <section class="step">
+            <div class="text-box gala-box">
+                <h2>Galardón del Punto Penal</h2>
+                <p>Pisar el área con agresividad fuerza el error rival. Este último premio reconoce a los equipos que, por su verticalidad, han sido recompensados con la pena máxima. ¿Será esto suficiente para el campeonato?</p>
+                <div id="podium-6" class="podium-container"></div>
+            </div>
+        </section>
+        
+        <div class="scroll-spacer" style="height: 50vh;"></div>
+    </div>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard-section">
+        <header class="header">
+            <div class="header-brand">
+                <span class="red-slash">//</span> LIGA MX
+            </div>
+            <h1>Telemetría de los ultimos 5 partidos</h1>
+            <p class="subtitle" style="max-width: 800px; line-height: 1.6; text-transform: none; font-weight: 500;">
+                ¿Por qué enfocarnos únicamente en la recta final del torneo regular? Analizar la ventana de los últimos 5 partidos nos permite aislar el <strong>momentum</strong> real de cada equipo. Las dinámicas de juego, rachas y niveles de fatiga recientes son indicadores mucho más precisos que el desempeño de hace tres meses. Aunque no garantiza al futuro campeón, esta telemetría es la base estadística ideal para intentar predecir quiénes lograrán superar la primera fase eliminatoria de la Liguilla.
+            </p>
+        </header>
+
+        <main class="dashboard-container">
+            <!-- ROW 1: Bracket & Table -->
+            <section class="dashboard-row row-1">
+                <div class="panel panel-bracket">
+                    <h2><span class="red-slash">//</span> CUARTOS DE FINAL</h2>
+                    
+                    <div class="form-legend">
+                        <div class="legend-item"><span class="legend-color legend-w"></span> GANÓ</div>
+                        <div class="legend-item"><span class="legend-color legend-d"></span> EMPATÓ</div>
+                        <div class="legend-item"><span class="legend-color legend-l"></span> PERDIÓ</div>
+                        <div class="legend-item legend-text"><span>L</span> LOCAL</div>
+                        <div class="legend-item legend-text"><span>V</span> VISITANTE</div>
+                    </div>
+
+                    <div class="bracket-container" id="bracket-container">
+                        <!-- Matches will be injected here by JS -->
+                    </div>
+                </div>
+
+                <div class="panel panel-table">
+                    <h2><span class="red-slash">//</span> STANDINGS</h2>
+                    <table class="general-table">
+                        <thead>
+                            <tr>
+                                <th>Pos</th>
+                                <th>Equipo</th>
+                                <th>PTS</th>
+                                <th>JG</th>
+                                <th>JE</th>
+                                <th>JP</th>
+                                <th>GF</th>
+                                <th>GC</th>
+                                <th>DIF</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            <!-- Table rows injected by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ROW 2: Rendimiento y Oportunidades -->
+            <section class="dashboard-row row-2">
+                <div class="panel panel-rendimiento">
+                    <h2><span class="red-slash">//</span> RENDIMIENTO Y OPORTUNIDADES</h2>
+                    <div class="charts-grid" id="charts-grid">
+                        <div class="chart-wrapper chart-possession"><canvas id="chart-possession"></canvas></div>
+                        <div class="chart-wrapper"><canvas id="chart-goals"></canvas></div>
+                        <div class="chart-wrapper"><canvas id="chart-penalties"></canvas></div>
+                        <div class="chart-wrapper"><canvas id="chart-corners"></canvas></div>
+                        <div class="chart-wrapper"><canvas id="chart-saves"></canvas></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ROW 3: Disciplina y Juego & Insights -->
+            <section class="dashboard-row row-3">
+                <div class="panel panel-disciplina">
+                    <h2><span class="red-slash">//</span> DISCIPLINA Y JUEGO</h2>
+                    <div class="left-charts-grid">
+                        <div class="chart-wrapper"><canvas id="chart-cards"></canvas></div>
+                        <div class="chart-wrapper"><canvas id="chart-fouls"></canvas></div>
+                        <div class="chart-wrapper"><canvas id="chart-offsides"></canvas></div>
+                    </div>
+                </div>
+
+                <div class="panel panel-insights">
+                    <h2><span class="red-slash">//</span> INSIGHTS CLAVE</h2>
+                    <div id="telemetry-grid">
+                        <!-- Telemetry insights injected by JS -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </section>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
